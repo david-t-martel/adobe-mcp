@@ -1,0 +1,125 @@
+{
+  "name": "adobe-mcp",
+  "version": "1.0.0",
+  "description": "Unified MCP server for Adobe Creative Suite applications",
+  "author": "Adobe MCP Contributors",
+  "license": "MIT",
+  "runtime": "python",
+  "main": "adobe_mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/adobe-mcp.git"
+  },
+  "servers": {
+    "photoshop": {
+      "name": "Adobe Photoshop MCP",
+      "description": "Control Adobe Photoshop via MCP protocol",
+      "command": "adobe-photoshop",
+      "env": {
+        "PROXY_URL": "http://localhost:3001",
+        "APPLICATION": "photoshop"
+      },
+      "requires": ["proxy-server"],
+      "features": [
+        "document-management",
+        "layer-control",
+        "filters",
+        "text-editing",
+        "selections",
+        "image-generation"
+      ]
+    },
+    "premiere": {
+      "name": "Adobe Premiere Pro MCP",
+      "description": "Control Adobe Premiere Pro via MCP protocol",
+      "command": "adobe-premiere",
+      "env": {
+        "PROXY_URL": "http://localhost:3001",
+        "APPLICATION": "premiere"
+      },
+      "requires": ["proxy-server"],
+      "features": [
+        "project-management",
+        "timeline-editing",
+        "transitions",
+        "effects",
+        "audio-control"
+      ]
+    },
+    "illustrator": {
+      "name": "Adobe Illustrator MCP",
+      "description": "Control Adobe Illustrator with integrated proxy",
+      "command": "adobe-illustrator",
+      "env": {
+        "APPLICATION": "illustrator"
+      },
+      "features": [
+        "vector-graphics",
+        "path-editing",
+        "typography",
+        "artboards"
+      ],
+      "ports": {
+        "proxy": 8001,
+        "mcp": 8000
+      }
+    },
+    "indesign": {
+      "name": "Adobe InDesign MCP",
+      "description": "Control Adobe InDesign via MCP protocol",
+      "command": "adobe-indesign",
+      "env": {
+        "PROXY_URL": "http://localhost:3001",
+        "APPLICATION": "indesign"
+      },
+      "requires": ["proxy-server"],
+      "features": [
+        "document-layout",
+        "typography",
+        "page-management",
+        "styles"
+      ]
+    },
+    "proxy-server": {
+      "name": "Adobe MCP Proxy Server",
+      "description": "WebSocket proxy for Adobe UXP plugins",
+      "command": "adobe-proxy",
+      "runtime": "node",
+      "ports": {
+        "websocket": 3001
+      }
+    }
+  },
+  "installation": {
+    "python": {
+      "command": "pip install -e .",
+      "requirements": [
+        "python>=3.10",
+        "fastmcp>=0.5.0",
+        "mcp>=1.1.1"
+      ]
+    },
+    "node": {
+      "command": "cd proxy-server && npm install",
+      "requirements": [
+        "node>=18.0.0"
+      ]
+    }
+  },
+  "claude_config": {
+    "mcpServers": {
+      "adobe-photoshop": {
+        "command": "adobe-photoshop"
+      },
+      "adobe-premiere": {
+        "command": "adobe-premiere"
+      },
+      "adobe-illustrator": {
+        "command": "adobe-illustrator"
+      },
+      "adobe-indesign": {
+        "command": "adobe-indesign"
+      }
+    }
+  }
+}

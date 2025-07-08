@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "adobe-mcp"
+version = "1.0.0"
+description = "Unified MCP server for Adobe Creative Suite applications"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Adobe MCP Contributors"},
+]
+dependencies = [
+    "fastmcp>=0.5.0",
+    "httpx>=0.28.1",
+    "uvicorn>=0.32.0",
+    "mcp>=1.1.1",
+    "pillow>=11.0.0",
+    "numpy>=2.0.0",
+    "fonttools>=4.0.0",
+    "python-socketio>=5.0.0",
+    "websocket-client>=1.8.0",
+    "requests>=2.32.0",
+]
+
+[project.scripts]
+adobe-photoshop = "adobe_mcp.photoshop:main"
+adobe-premiere = "adobe_mcp.premiere:main"
+adobe-illustrator = "adobe_mcp.illustrator:main"
+adobe-indesign = "adobe_mcp.indesign:main"
+adobe-proxy = "adobe_mcp.proxy:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black",
+    "isort",
+    "mypy",
+    "ruff",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["adobe_mcp"]
