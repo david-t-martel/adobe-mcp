@@ -1,0 +1,49 @@
+{
+  "id": "com.adobemcp.illustrator",
+  "name": "Illustrator MCP Agent",
+  "version": "1.0.0",
+  "main": "main.js",
+  "manifestVersion": 4,
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "com.adobemcp.illustrator.panel",
+      "label": {
+        "default": "Illustrator MCP Agent"
+      },
+      "icons": [
+        {
+          "width": 23,
+          "height": 23,
+          "path": "icons/dark@1x.png",
+          "scale": [1, 2],
+          "theme": ["all"],
+          "species": ["chrome"]
+        }
+      ]
+    }
+  ],
+  "host": [
+    {
+      "app": "AI",
+      "minVersion": "27.0"
+    }
+  ],
+  "requiredPermissions": [
+    "webview",
+    "clipboard",
+    "localFileSystem",
+    "userInfo",
+    "launchProcess",
+    "activeDocument",
+    "documentEvents"
+  ],
+  "strings": {
+    "en": {
+      "default": {
+        "name": "Illustrator MCP Agent",
+        "description": "MCP agent for AI-powered Illustrator control"
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "project": {
+    "name": "adobe-mcp-unified",
+    "type": "python",
+    "framework": "standard-python",
+    "path": "/mnt/t/projects/mcp_servers/adobe-controller/adobe-mcp-unified",
+    "lastAnalyzed": "2025-07-08T20:10:48Z",
+    "analyzedBy": "claude-code-hook-Edit",
+    "sessionId": "66c08c6d-66f8-4ecf-ae6d-640f880048e4"
+  },
+  "structure": {
+    "totalFiles": {
+      "python": 15,
+      "notebook": 0,
+      "text": 0,
+      "markdown": 2
+    },
+    "keyFiles": [
+            ".claude/project-analysis.md",
+      "README.md",
+      "adobe_mcp/__init__.py",
+      "adobe_mcp/illustrator/__init__.py",
+      "adobe_mcp/illustrator/server.py",
+      "adobe_mcp/indesign/__init__.py",
+      "adobe_mcp/indesign/server.py",
+      "adobe_mcp/photoshop/__init__.py",
+      "adobe_mcp/photoshop/server.py",
+      "adobe_mcp/premiere/__init__.py",
+      "adobe_mcp/premiere/server.py",
+      "adobe_mcp/proxy.py",
+      "adobe_mcp/shared/__init__.py",
+      "adobe_mcp/shared/core.py",
+      "adobe_mcp/shared/fonts.py",
+      "adobe_mcp/shared/logger.py",
+      "adobe_mcp/shared/socket_client.py",
+      "pyproject.toml"
+    ]
+  },
+  "git": {
+    "branch": "main",
+    "hasChanges": true,
+    "changedFiles": [
+            ".claude/project-analysis.md",
+      ".claude/project-context.json",
+      "uxp-plugins/illustrator/commands/index.js",
+      "uxp-plugins/illustrator/icons/dark@1x.png",
+      "uxp-plugins/illustrator/icons/dark@2x.png",
+      "uxp-plugins/illustrator/icons/light@1x.png",
+      "uxp-plugins/illustrator/icons/light@2x.png",
+      "uxp-plugins/illustrator/index.html",
+      "uxp-plugins/illustrator/main.js",
+      "uxp-plugins/illustrator/manifest.json",
+    ],
+    "recentCommits": [
+            "101b6b8 Initial commit: Unified Adobe MCP server for Creative Suite applications"
+    ]
+  },
+  "dependencies": {
+    "production": [],
+    "development": [],
+    "scripts": []
+  },
+  "mcp": {
+    "servers": [
+      "github-wsl",
+      "memory-wsl",
+      "filesystem-wsl",
+      "desktop-commander-wsl",
+      "sequential-thinking-wsl",
+      "fetch-wsl"
+    ],
+    "githubIntelligence": ]0;claude{},
+    "contextBuildTime": "2025-07-08T20:10:48Z",
+    "claudeCodeIntegration": 1
+  },
+    "contextStrategy": "intelligent",
+    "preferredModel": "claude-sonnet-4-20250514"
+  }
+}
