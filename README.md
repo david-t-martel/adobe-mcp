@@ -30,17 +30,20 @@ The system uses a 3-tier architecture:
 ### Quick Install
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/adobe-mcp.git
 cd adobe-mcp
 ```
 
 2. Install Python dependencies:
+
 ```bash
 pip install -e .
 ```
 
 3. Install proxy server dependencies:
+
 ```bash
 cd proxy-server
 npm install
@@ -48,6 +51,7 @@ cd ..
 ```
 
 4. Start the proxy server:
+
 ```bash
 adobe-proxy
 ```

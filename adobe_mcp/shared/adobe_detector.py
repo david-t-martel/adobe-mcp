@@ -1,9 +1,12 @@
 """Detect Adobe application installations on Windows."""
 import os
 import platform
-import winreg
 import json
 from pathlib import Path
+
+# Only import winreg on Windows
+if platform.system() == "Windows":
+    import winreg
 
 def find_adobe_apps_windows():
     """Find Adobe application installations on Windows."""

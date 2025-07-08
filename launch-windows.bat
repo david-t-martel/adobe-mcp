@@ -11,9 +11,10 @@ if errorlevel 1 (
 
 :: Detect Adobe installations
 echo Detecting Adobe installations...
-python -m adobe_mcp.shared.adobe_detector
+python -m adobe_mcp.shared.adobe_detector 2>nul
 if errorlevel 1 (
-    echo WARNING: Could not detect all Adobe applications
+    echo WARNING: Could not auto-detect Adobe applications
+    echo Please check config.windows.json manually
 )
 
 :: Check if virtual environment exists
@@ -22,14 +23,17 @@ if not exist ".venv" (
     python -m venv .venv
 )
 
-:: Activate virtual environment
-call .venv\Scripts\activate
+:: Activate virtual environment with full path
+call "%CD%\.venv\Scripts\activate.bat"
+
+:: Upgrade pip first
+python -m pip install --upgrade pip >nul 2>&1
 
 :: Install dependencies if needed
-pip show fastmcp >nul 2>&1
+python -m pip show fastmcp >nul 2>&1
 if errorlevel 1 (
     echo Installing dependencies...
-    pip install -e .
+    python -m pip install -e .
 )
 
 :: Check if Node.js is installed

@@ -274,7 +274,10 @@ async def test_logo_creation():
         assert "Logo design created" in result
         
         # Save the logo
-        save_path = "C:/Temp/adobe_mcp_logo.ai"
+        import os
+        docs_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'Adobe_MCP_Tests')
+        os.makedirs(docs_dir, exist_ok=True)
+        save_path = os.path.join(docs_dir, "adobe_mcp_logo.ai").replace('\\', '/')
         result = await tester.save_document(save_path)
         assert "Document saved" in result
         
@@ -291,7 +294,10 @@ async def test_vector_illustration():
         assert "Vector illustration created" in result
         
         # Export as PNG
-        export_path = "C:/Temp/adobe_mcp_illustration.png"
+        import os
+        docs_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'Adobe_MCP_Tests')
+        os.makedirs(docs_dir, exist_ok=True)
+        export_path = os.path.join(docs_dir, "adobe_mcp_illustration.png").replace('\\', '/')
         result = await tester.export_as_png(export_path)
         assert "Exported to PNG" in result
         
@@ -302,6 +308,12 @@ async def main():
     """Run all tests."""
     print("Adobe Illustrator MCP Test Suite")
     print("================================")
+    
+    # Setup save directory
+    import os
+    docs_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'Adobe_MCP_Tests')
+    os.makedirs(docs_dir, exist_ok=True)
+    print(f"\nSave directory: {docs_dir}")
     
     tester = IllustratorTester()
     
@@ -329,7 +341,7 @@ async def main():
         print(f"   Result: {result}")
         
         print("\n4. Saving document...")
-        save_path = "C:/Temp/adobe_mcp_test.ai"
+        save_path = os.path.join(docs_dir, "adobe_mcp_test.ai").replace('\\', '/')
         result = await tester.save_document(save_path)
         print(f"   Result: {result}")
         
@@ -339,7 +351,7 @@ async def main():
         print(f"   Result: {result}")
         
         print("\n6. Exporting as PNG...")
-        export_path = "C:/Temp/adobe_mcp_test.png"
+        export_path = os.path.join(docs_dir, "adobe_mcp_test.png").replace('\\', '/')
         result = await tester.export_as_png(export_path)
         print(f"   Result: {result}")
         

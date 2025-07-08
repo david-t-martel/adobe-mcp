@@ -2,19 +2,24 @@
 echo Adobe MCP Test Runner
 echo ====================
 
-:: Ensure we're in the virtual environment
+:: Check if virtual environment exists
 if not exist ".venv" (
-    echo ERROR: Virtual environment not found. Run launch-windows.bat first.
-    exit /b 1
+    echo Creating virtual environment...
+    python -m venv .venv
 )
 
-call .venv\Scripts\activate
+:: Activate virtual environment with full path
+call "%CD%\.venv\Scripts\activate.bat"
 
 :: Install test dependencies
-pip install -r requirements-test.txt >nul 2>&1
+echo Installing test dependencies...
+python -m pip install --upgrade pip >nul 2>&1
+python -m pip install -r requirements-test.txt
 
-:: Create temp directory for test outputs
-if not exist "C:\Temp" mkdir C:\Temp
+:: Create test output directory in Documents
+set TEST_DIR=%USERPROFILE%\Documents\Adobe_MCP_Tests
+if not exist "%TEST_DIR%" mkdir "%TEST_DIR%"
+echo Test outputs will be saved to: %TEST_DIR%
 
 :: Run the tests
 echo.

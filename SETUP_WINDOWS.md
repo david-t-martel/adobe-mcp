@@ -93,7 +93,7 @@ This will:
 - Create a new Illustrator document
 - Generate a logo design
 - Create a vector illustration
-- Save files to `C:\Temp\`
+- Save files to `%USERPROFILE%\Documents\Adobe_MCP_Tests\`
 
 ## Using with Claude Desktop
 
@@ -132,7 +132,7 @@ Add to your Claude Desktop configuration (`%APPDATA%\Claude\claude_desktop_confi
 
 ### Test Failures
 - Ensure Illustrator is running before tests
-- Check `C:\Temp` directory exists and is writable
+- Check `%USERPROFILE%\Documents\Adobe_MCP_Tests\` directory is writable
 - Verify UXP plugin shows "Connected"
 
 ## Example Commands
@@ -148,7 +148,10 @@ async def create_design():
     tester = IllustratorTester()
     await tester.create_test_document()
     await tester.create_logo_design()
-    await tester.save_document("C:/Temp/my_logo.ai")
+    
+    import os
+    save_path = os.path.join(os.environ['USERPROFILE'], 'Documents', 'Adobe_MCP_Tests', 'my_logo.ai')
+    await tester.save_document(save_path.replace('\\', '/'))
     await tester.close()
 
 asyncio.run(create_design())
