@@ -28,11 +28,32 @@ echo.
 if not exist ".venv" (
     echo Creating Python virtual environment...
     python -m venv .venv
+    if errorlevel 1 (
+        echo ERROR: Failed to create virtual environment
+        echo Trying with --without-pip option...
+        python -m venv --without-pip .venv
+    )
 )
 
 :: Activate it
 echo Activating virtual environment...
-call "%CD%\.venv\Scripts\activate.bat"
+if exist ".venv\Scripts\activate.bat" (
+    call .venv\Scripts\activate.bat
+) else (
+    echo ERROR: Virtual environment activation script not found
+    pause
+    exit /b 1
+)
+
+:: Ensure pip is installed
+echo Checking pip installation...
+python -m ensurepip --default-pip 2>nul
+if errorlevel 1 (
+    echo Installing pip manually...
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py
+    del get-pip.py
+)
 
 :: Upgrade pip
 echo Upgrading pip...

@@ -23,12 +23,16 @@ This guide will help you set up and test the Adobe MCP server on Windows.
 cd adobe-mcp-unified
 ```
 
-### 2. Detect Adobe Installations
+### 2. Install Dependencies
 
-The setup script will automatically detect your Adobe installations:
+#### For PowerShell (Recommended):
+```powershell
+.\install.ps1
+```
 
+#### For Command Prompt:
 ```batch
-launch-windows.bat
+install.bat
 ```
 
 This will:
@@ -55,6 +59,16 @@ For each Adobe application you want to control:
 
 Run the launcher and start services in this order:
 
+#### For PowerShell:
+```powershell
+.\launch.ps1
+```
+
+#### For Command Prompt:
+```batch
+launch-windows.bat
+```
+
 1. **Start Proxy Server** (option 5 in menu)
    - This opens in a new window
    - Should show "adb-mcp Command proxy server running on ws://localhost:3001"
@@ -76,6 +90,12 @@ Run the launcher and start services in this order:
 1. Ensure all services are running (proxy + MCP + Adobe app)
 2. Run the test suite:
 
+#### PowerShell:
+```powershell
+.\run-tests.ps1
+```
+
+#### Command Prompt:
 ```batch
 run-tests.bat
 ```
@@ -85,6 +105,12 @@ run-tests.bat
 1. Start all services as described above
 2. Run manual test:
 
+#### PowerShell:
+```powershell
+.\run-tests.ps1 manual
+```
+
+#### Command Prompt:
 ```batch
 run-tests.bat manual
 ```

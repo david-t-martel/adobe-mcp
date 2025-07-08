@@ -23,17 +23,29 @@ if not exist ".venv" (
     python -m venv .venv
 )
 
-:: Activate virtual environment with full path
-call "%CD%\.venv\Scripts\activate.bat"
+:: Activate virtual environment
+if exist ".venv\Scripts\activate.bat" (
+    call .venv\Scripts\activate.bat
+) else (
+    echo ERROR: Virtual environment not found. Please run install.bat first.
+    pause
+    exit /b 1
+)
 
-:: Upgrade pip first
-python -m pip install --upgrade pip >nul 2>&1
+:: Verify we're in venv by checking python location
+where python | findstr /i "\.venv" >nul
+if errorlevel 1 (
+    echo ERROR: Virtual environment not activated properly
+    echo Please ensure .venv exists and try again
+    pause
+    exit /b 1
+)
 
 :: Install dependencies if needed
 python -m pip show fastmcp >nul 2>&1
 if errorlevel 1 (
     echo Installing dependencies...
-    python -m pip install -e .
+    python -m pip install -r requirements.txt
 )
 
 :: Check if Node.js is installed
