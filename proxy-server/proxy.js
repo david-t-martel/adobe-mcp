@@ -29,11 +29,32 @@ const server = http.createServer(app);
 const io = new Server(server, 
   {
     transports: ["websocket"],
-    maxHttpBufferSize: 50 * 1024 * 1024
+    maxHttpBufferSize: 50 * 1024 * 1024,
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"]
+    }
   }
 );
 
 const PORT = 3001
+
+// Add middleware
+app.use(express.json());
+
+// Status endpoint
+app.get('/status', (req, res) => {
+  const status = {
+    status: 'running',
+    port: PORT,
+    clients: Object.keys(applicationClients).reduce((acc, app) => {
+      acc[app] = applicationClients[app] ? applicationClients[app].size : 0;
+      return acc;
+    }, {}),
+    uptime: process.uptime()
+  };
+  res.json(status);
+});
 // Track clients by application
 const applicationClients = {};
 
